@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.root.rekids.GUI.Game1Activity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Juego 1"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:id="@+id/mygrid"
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
+        android:orientation="horizontal"
+        android:columnCount="7"
+        android:rowCount="4"
+        android:background="@android:color/background_light" >
+    </GridLayout>
+
+    <ImageView
+        android:id="@+id/expresion"
+        android:layout_width="99dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/generar"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:text="Generar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Comprobar" />
+
+</RelativeLayout>
