@@ -39,7 +39,8 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         buttong.setOnClickListener(generar);
 
         a=(ImageView) findViewById(R.id.expresion);
-
+        
+        //Esta vara es lo de los cuadros
         int numOfCol = myGridLayout.getColumnCount();
         int numOfRow = myGridLayout.getRowCount();
         myViews = new MyView[numOfCol*numOfRow];
@@ -81,18 +82,21 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
                     }});
     }
 
+    //Este método cierra la aplicacion
     public void rellenaMatriz(String expression){
         for(int i=0;i<languages.length;i++){
             languages[i]=regEx.generateLanguage(alphabet,expression);
         }
     }
 
+    //Si uso el random de la lógica, se cae si se le da seguido al boton
     int random(){
         Random rand = new Random();
         int num=rand.nextInt((8 - 0) + 1) + 0;
         return num;
     }
 
+    //Listener del boton
     View.OnClickListener generar= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
