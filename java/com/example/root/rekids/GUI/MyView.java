@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+//Esta clase es la que dibuja los cuadrados, el metodo que los pinta es el OnTouch
 public class MyView extends View {
 
     public interface OnToggledListener {
