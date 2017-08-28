@@ -3,7 +3,6 @@ package com.example.root.rekids.GUI;
 /**
  * Created by root on 27/08/17.
  */
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,12 +15,18 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.root.rekids.Logic.matrixManagement;
+
+
 public class MyView extends View {
+
+
 
     public interface OnToggledListener {
         void OnToggled(MyView v, boolean touchOn);
     }
 
+    String emptyCell;
     private ShapeDrawable mDrawable;
     boolean touchOn;
     boolean mDownTouch = false;
@@ -30,10 +35,12 @@ public class MyView extends View {
     int idY = 0; //default
     int shapes;
 
-    public MyView(Context context, int x, int y) {
+
+    public MyView(Context context, int x, int y, String id) {
         super(context);
         idX = x;
         idY = y;
+        emptyCell=id;
         init();
     }
 
@@ -54,7 +61,19 @@ public class MyView extends View {
 
     private void init() {
         touchOn = false;
-        shapes = 0;
+        switch (emptyCell) {
+            case ("F"):
+                shapes = 0;
+            case ("a"):
+                shapes = 0;
+            case ("b"):
+                shapes = 1;
+            case ("c"):
+                shapes = 2;
+            case ("d"):
+                shapes = 3;
+        }
+
     }
 
     @Override
@@ -135,7 +154,9 @@ public class MyView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
-
+        if (emptyCell != "F"){
+            return false;
+        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 

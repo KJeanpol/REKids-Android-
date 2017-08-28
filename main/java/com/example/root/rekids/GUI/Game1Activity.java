@@ -10,15 +10,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.root.rekids.Logic.RegularExpressions;
+import com.example.root.rekids.Logic.matrixManagement;
 import com.example.root.rekids.R;
 
 import java.util.Random;
 
 public class Game1Activity extends AppCompatActivity implements MyView.OnToggledListener{
-
+    String[] prueba = { "a", "b", "c", "d" };
+    String exp = "([a+b])*dc";
     MyView[] myViews;
-
+    matrixManagement matrixFinal;
     GridLayout myGridLayout;
+    String fmatrix[][]=new String [5][5];
     Button buttong;
     ImageView a;
     RegularExpressions regEx;
@@ -32,7 +35,8 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game1_activity);
         regEx=new RegularExpressions();
-
+        fmatrix=matrixFinal.generateMatrix(prueba, exp);
+        System.out.println(fmatrix);
         myGridLayout = (GridLayout)findViewById(R.id.mygrid);
 
         buttong= (Button) findViewById(R.id.generar);
@@ -45,13 +49,11 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         myViews = new MyView[numOfCol*numOfRow];
         for(int yPos=0; yPos<numOfRow; yPos++){
             for(int xPos=0; xPos<numOfCol; xPos++){
-                MyView tView = new MyView(this, xPos, yPos);
-                tView.setOnToggledListener(this);
+                MyView tView = new MyView(this, xPos, yPos,fmatrix[xPos][yPos]);
                 myViews[yPos*numOfCol + xPos] = tView;
                 myGridLayout.addView(tView);
-            }
+                tView.setOnToggledListener(this);
         }
-
         myGridLayout.getViewTreeObserver().addOnGlobalLayoutListener(
                 new OnGlobalLayoutListener(){
 
@@ -79,7 +81,7 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
                         }
 
                     }});
-    }
+    }}
 
     public void rellenaMatriz(String expression){
         for(int i=0;i<languages.length;i++){
