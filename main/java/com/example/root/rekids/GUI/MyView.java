@@ -71,7 +71,7 @@ public class MyView extends View {
                 shapes = 3;
                 break;
             case "F":
-                shapes = 1;
+                shapes = 4;
                 break;
         }
 
@@ -100,6 +100,22 @@ public class MyView extends View {
 
             mDrawable.draw(canvas);
 
+        }else if (shapes == 0){
+
+            int x = 10;
+            int y = 10;
+            int width = 125;
+            int height = 300;
+            float[] corners = {50,50,25,25,50,50,25,25};
+
+            mDrawable = new ShapeDrawable(new RoundRectShape(corners, null, null));
+
+            mDrawable.getPaint().setColor(Color.GREEN);
+
+            mDrawable.setBounds(x, y, x + width, y + height);
+
+            mDrawable.draw(canvas);
+
         }
         else if (shapes == 2){
 
@@ -118,7 +134,7 @@ public class MyView extends View {
             mDrawable.draw(canvas);
 
         }
-        else if (shapes == 3){
+        else if (shapes == 4){
 
             int x = 10;
             int y = 10;
@@ -134,7 +150,7 @@ public class MyView extends View {
             mDrawable.draw(canvas);
 
         }
-        else {
+        else if(shapes==3){
 
             int x = 10;
             int y = 10;
@@ -166,7 +182,7 @@ public class MyView extends View {
                 touchOn = !touchOn;
                 invalidate();
 
-                if (shapes == 3){
+                if (shapes == 4){
                     shapes = 0;
                 }else{
                     shapes++;
@@ -186,7 +202,7 @@ public class MyView extends View {
                     return true;
                 }
 
-                if (shapes == 3){
+                if (shapes == 4){
                     shapes = 0;
                 }else{
                     shapes++;
