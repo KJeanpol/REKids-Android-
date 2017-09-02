@@ -2,12 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/textView3"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/leng"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1.0"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/generar"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:text="Generar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="+" />
+
+    <EditText
+        android:id="@+id/expression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/generar"
+        android:layout_toStartOf="@+id/compare"
+        android:ems="10"
+        android:hint="Expresion"
+        android:inputType="text"
+        android:maxLength="15" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="132dp"
-        android:text="Juego 3" />
+        android:text="Escribe una expresion como: (a*+b*) o (a+c+h)*"
+        android:layout_above="@+id/generar"
+        android:layout_marginBottom="16dp" />
+
 </RelativeLayout>
