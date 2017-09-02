@@ -7,6 +7,7 @@ package com.example.root.rekids.GUI;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.*;
 import android.graphics.drawable.shapes.ArcShape;
 import android.graphics.drawable.shapes.OvalShape;
@@ -28,6 +29,7 @@ public class MyView extends View {
     private OnToggledListener toggledListener;
     int idX = 0; //default
     int idY = 0; //default
+    String valor;
     int shapes;
     String emptyCell;
 
@@ -89,8 +91,8 @@ public class MyView extends View {
 
             int x = 10;
             int y = 10;
-            int width = 125;
-            int height = 300;
+            int width = 70;
+            int height = 70;
 
             mDrawable = new ShapeDrawable(new OvalShape());
 
@@ -104,8 +106,8 @@ public class MyView extends View {
 
             int x = 10;
             int y = 10;
-            int width = 125;
-            int height = 300;
+            int width = 70;
+            int height = 70;
             float[] corners = {50,50,25,25,50,50,25,25};
 
             mDrawable = new ShapeDrawable(new RoundRectShape(corners, null, null));
@@ -121,8 +123,8 @@ public class MyView extends View {
 
             int x = 10;
             int y = 10;
-            int width = 125;
-            int height = 300;
+            int width = 70;
+            int height = 70;
             float[] corners = {50,50,25,25,50,50,25,25};
 
             mDrawable = new ShapeDrawable(new RoundRectShape(corners, null, null));
@@ -138,8 +140,8 @@ public class MyView extends View {
 
             int x = 10;
             int y = 10;
-            int width = 125;
-            int height = 300;
+            int width = 70;
+            int height = 70;
 
             mDrawable = new ShapeDrawable(new RectShape());
 
@@ -154,8 +156,8 @@ public class MyView extends View {
 
             int x = 10;
             int y = 10;
-            int width = 125;
-            int height = 300;
+            int width = 70;
+            int height = 70;
 
             mDrawable = new ShapeDrawable(new ArcShape(60, 280));
 
@@ -210,6 +212,27 @@ public class MyView extends View {
 
         }
         return false;
+    }
+
+    public String getValor(int id){
+        switch (id){
+            case 0:
+                valor= "a";
+                break;
+            case 1:
+                valor="b";
+                break;
+            case 2:
+                valor="c";
+                break;
+            case 3:
+                valor="d";
+                break;
+            case 4:
+                valor="F";
+                break;
+        }
+        return valor;
     }
 
     @Override
