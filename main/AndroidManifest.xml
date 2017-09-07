@@ -20,6 +20,9 @@
         <activity android:name=".GUI.Game2Activity"> </activity>
         <activity android:name=".GUI.Game3Activity"> </activity>
         <activity android:name=".GUI.Draw"> </activity>
+        <activity android:name=".GUI.HowTo1"> </activity>
+        <activity android:name=".GUI.HowTo2"> </activity>
+        <activity android:name=".GUI.HowTo3"> </activity>
     </application>
 
 </manifest>
