@@ -1,0 +1,17 @@
+import com.example.root.rekids.R;
+
+/**
+ * Created by root on 06/09/17.
+ */
+
+public class HowTo3 extends AppCompatActivity {
+
+    ImageView inst;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.howto3);
+        inst=(ImageView) findViewById(R.id.instruc1);
+        inst.setImageResource(R.drawable.inst3);
+    }
+}
