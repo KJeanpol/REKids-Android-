@@ -12,7 +12,7 @@ import com.example.root.rekids.R;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button buttonGame1, buttonGame2, buttonGame3, buttonMusic;
+    Button buttonGame1, buttonGame2, buttonGame3, buttonMusic,howto1,howto2,howto3,salir;
     MediaPlayer mediaPlayer;
     Boolean play;
     //RegularExpressions r;
@@ -27,15 +27,49 @@ public class MainActivity extends AppCompatActivity {
         buttonGame2=(Button)findViewById(R.id.bGame2);
         buttonGame3=(Button)findViewById(R.id.bGame3);
         buttonMusic=(Button)findViewById(R.id.bMusic);
+        howto1=(Button)findViewById(R.id.howto1);
+        howto2=(Button)findViewById(R.id.howto2);
+        howto3=(Button)findViewById(R.id.howto3);
+        salir=(Button) findViewById(R.id.bsalir);
         play=false;
         mediaPlayer=MediaPlayer.create(this, R.raw.music);
         buttonGame1.setOnClickListener(Onelistener);
         buttonGame2.setOnClickListener(Twolistener);
         buttonGame3.setOnClickListener(Threelistener);
         buttonMusic.setOnClickListener(Musiclistener);
+        howto1.setOnClickListener(ht1);
+        howto2.setOnClickListener(ht2);
+        howto3.setOnClickListener(ht3);
+        salir.setOnClickListener(exit);
 
     }
 
+    View.OnClickListener exit = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            finish();
+
+        }};
+
+    View.OnClickListener ht1 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this, HowTo1.class));
+
+        }};
+
+    View.OnClickListener ht2 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this, HowTo2.class));
+
+        }};
+    View.OnClickListener ht3 = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this, HowTo3.class));
+
+        }};
 
     View.OnClickListener Musiclistener = new View.OnClickListener(){
         @Override
