@@ -20,17 +20,16 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
     GridLayout myGridLayout;
     Button buttong, buttonc;
     ImageView a;
-    RegularExpressions regEx;
-    int[] images = {R.drawable.background};
+    int[] images = {R.drawable.i0,R.drawable.i1,R.drawable.i2,R.drawable.i3,R.drawable.i4,
+            R.drawable.i5,R.drawable.i6,R.drawable.i7};
     String[] Alphat={"a","b","c","d"};
-    String[] expressions = {"a*c*b*", "ba*c", "(db)*", "(a+b+d)*", "adc*", "a(ad*+c*a)", "a(bc)*", "(bd)*c", "dbc*"};
-    String expression = expressions[generateRandom()];
-    String[] languages = new String[4];
+    String[] expressions = {"a*c*b*", "ba*c", "(db)*", "(a|b|d)*", "adc*",
+            "(ad*)|(c*a)", "a(bc)*", "(bd)*c", "dbc*"};
+    int rand=generateRandom();
+    String expression = expressions[rand];
     String[][] matrix;
     String[][] matrixShown;
     String matrixEntry;
-
-    String[] ids = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +45,12 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
 
         buttong = (Button) findViewById(R.id.generar);
         buttonc = (Button) findViewById(R.id.compare);
+        a=(ImageView) findViewById(R.id.expresion);
         buttong.setOnClickListener(generar);
         buttonc.setOnClickListener(compare);
 
 
-        buttong.setText(expression);
+        a.setImageResource(images[rand]);
 
 
         int numOfCol = myGridLayout.getColumnCount();
