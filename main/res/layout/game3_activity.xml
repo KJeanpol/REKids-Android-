@@ -52,8 +52,16 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escribe una expresion como: (a*+b*) o (a+c+h)*"
         android:layout_above="@+id/generar"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:text="Escribe una expresion como: (a*+b*)   (a+c+h)* (x+c+d) (lm*)" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/generar"
+        android:layout_alignParentStart="true"
+        android:text="Puedes utilizar todas las letras para construir expresiones" />
 
 </RelativeLayout>
