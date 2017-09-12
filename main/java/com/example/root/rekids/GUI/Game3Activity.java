@@ -17,6 +17,7 @@ import com.example.root.rekids.R;
 
 import java.util.Random;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Created by root on 25/08/17.
@@ -27,16 +28,11 @@ public class Game3Activity extends AppCompatActivity {
     Button buttong, buttonc;
     EditText exp;
     TextView texto;
-    RegularExpressions regEx;
-    int[] images = {R.drawable.background};
-    String[] Alphat={"a","b","c","d","e","f","g","h",};
-    String[] expressions = {"a*c*b*", "ms*c", "(as)*", "(v+w+d)*", "adc*", "a(ad*+c*a)",
-            "a(bc)*", "(bd)*c", "dbc*","h*","(t+z)*"};
-    String expression = expressions[generateRandom()];
+    String[] Alphat={"a","b","c","d","e","f","g","h","i","j","k","l",
+            "m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
     String[] matrix;
     String matrixEntry;
 
-    String[] ids = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +92,12 @@ public class Game3Activity extends AppCompatActivity {
         }
 
         if (isLanguage(newLanguage, exp)) {
-
+            if (newLanguage.length() <= 11) {
                 return newLanguage;
+            } else {
+                return generateLanguage(alphabet, exp);
+            }
+
             } else {
 
             return generateLanguage(alphabet, exp);
@@ -131,7 +131,7 @@ public class Game3Activity extends AppCompatActivity {
                 }
 
 
-            }catch (Exception e){
+            }catch (PatternSyntaxException exception) {
                 Toast.makeText(Game3Activity.this,
                         "EXPRESION NO VALIDA",
                         Toast.LENGTH_SHORT).show();
@@ -139,5 +139,6 @@ public class Game3Activity extends AppCompatActivity {
             }
         }
     };}
+
 
 
