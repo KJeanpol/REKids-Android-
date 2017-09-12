@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener Twolistener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, Game2Activity.class));
+            startActivity(new Intent(MainActivity.this, Move.class));
         }};
 
 
@@ -108,3 +108,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, Game3Activity.class));
         }};
 }
+
