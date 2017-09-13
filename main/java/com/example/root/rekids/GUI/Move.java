@@ -33,6 +33,10 @@ import java.util.regex.Pattern;
  * Created by jose on 26/08/2017.
  */
 
+/**
+ * Metodo Move: Clase principal
+ *
+ */
 public class Move extends Activity implements SensorEventListener2,OnClickListener {
     private float xPos, xAccel, xVel = 0.0f;
     private float yPos, yAccel, yVel = 0.0f;
@@ -82,6 +86,13 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
+
+    /**
+     *
+     * @param Alphabet Alfabeto que utilizara la expresion regular
+     * @param exp Expresion regular
+     * @return
+     */
     public String[] generateMatrix(String[] Alphabet, String exp) {
         for (int i = 0; i < 11; i++) {
             matrixEntry = generateLanguage(Alphabet, exp);
@@ -92,12 +103,22 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         return matrix;
     }
 
+    /**
+     *
+     * @return retorna un numero random
+     */
     public int generateRandom() {
         Random random = new Random();
         int num = random.nextInt(5);
         return num;
     }
 
+    /**
+     *
+     * @param Alphabet Alfabeto
+     * @param exp Expresion
+     * @return lenguage generado
+     */
     public String generateLanguage(String[] Alphabet, String exp) {
         String[] alphabet = Alphabet;
         int num = generateRandom();
@@ -119,17 +140,26 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         }
     }
 
+    /**
+     *
+     * @param language Lenguaje
+     * @param expression Expresion regular
+     * @return retorna un boolean true o false dependiendo si el lenguaje le corresponda a la expresion
+     */
     public boolean isLanguage(String language, String expression) {
         return Pattern.matches(expression, language);
     }
 
+    /**
+     * Provee los fps =fp, y la velocdad del movimiento de la nave, ademas define los limites en x y en y de la nave en el canvas
+     */
     private void updateBit() {
-        float frameTime = 0.666f;
+        float frameTime = 10f;
         xVel += (xAccel * frameTime);
         yVel += (yAccel * frameTime);
 
-        float xS = (xVel / 10) * frameTime; //PROVIDE THE ANGULE OF THE POSITION
-        float yS = (yVel / 10) * frameTime;  // WITH LESS DENOMINADOR THE BALL MOVE IS MORE DIFFICULT
+        float xS = (xVel / 20) * frameTime; //PROVIDE THE ANGULE OF THE POSITION
+        float yS = (yVel / 20) * frameTime;  // WITH LESS DENOMINADOR THE BALL MOVE IS MORE DIFFICULT
 
         xPos -= xS;
         yPos -= yS;
@@ -148,7 +178,9 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
 
 
     }
-
+    /**
+    * Click de eventos
+    */
     @Override
     public void onClick(View view) {
         if(view.getTag()== "Round"){
@@ -188,6 +220,9 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
 
     }
 
+    /**
+     * Metodo donde se dibuja todo el juego
+     */
     public class Draw extends SurfaceView implements Runnable {
         SurfaceHolder ourHolder;
         Thread ourThread = null;
@@ -215,6 +250,10 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
             heart = Bitmap.createScaledBitmap(heart1, dstWidth3, dstHeight4, true);
 
         }
+
+        /**
+         * Pone en pausa el hilo del juego
+         */
         public void pause(){
             isRunning = false;
             while (true){
@@ -231,20 +270,28 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
             ourThread = null;
 
         }
+
+        /**
+         * Tras la pausa, resumen el hilo del juego
+         */
         public void resume(){
 
             isRunning = true;
             ourThread = new Thread(this);
             ourThread.start();
         }
+
+        /**
+         * Dibuja en el canvas
+         */
         public void draw() {
             try{
                 while(vidas!=0) {
                     Canvas canvas = ourHolder.lockCanvas();
                     canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.space), 0, 0, null);
                     canvas.drawBitmap(airplane, xPos, yPos, null);
-                    canvas.drawBitmap(mars, 395, 0, null);
-                    canvas.drawBitmap(lune, 338, 380, null);
+                    canvas.drawBitmap(mars, 490, 0, null);
+                    canvas.drawBitmap(lune, 430, 380, null);
 
                     for (int i = 1; i < vidas; i++) {
                         int x = 475;
@@ -285,6 +332,13 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
 
             }
         }
+
+        /**
+         * Metodo de colision de la nave y las opciones
+         * @param rect1 Rectangulo 1
+         * @param rect2 Rectangulo 2
+         * @param rect3 Rectangulo 3
+         */
         public void Colision(Rect rect1, Rect rect2, Rect rect3){
 
             if (Rect.intersects(rect1, rect2)) {
@@ -299,6 +353,13 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
                 Puntos += 100;
             }
         }
+
+        /**
+         * Metodo de colision de la nave y las opciones
+         * @param rect1 Rectangulo 1
+         * @param rect2 Rectangulo 2
+         * @param rect3 Rectangulo 3
+         */
         public void Colision2(Rect rect1, Rect rect2, Rect rect3){
 
             if (Rect.intersects(rect1, rect2)) {
@@ -315,6 +376,9 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
             }
         }
 
+        /**
+         * Metodo donde se inicializa el juego
+         */
         @Override
         public void run(){
             while (isRunning){
@@ -325,6 +389,10 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         }
 
     }
+
+    /**
+     * Metodo que pinta las expresiones, y lleva el manejo de puntos y vidas
+     */
     public void Onwin(){
         xPos=0;
         yPos=0;
@@ -345,6 +413,11 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         }
 
     }
+
+    /**
+     *     Metodo que pinta las expresiones, y lleva el manejo de puntos y vidas
+
+     */
     public void Onwin2(){
         xPos=0;
         yPos=0;
@@ -366,7 +439,10 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
 
     }
 
-
+    /**
+     * Se inicializa la posocion de los widgets y los layouts
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -382,7 +458,7 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         Display display = getWindowManager().getDefaultDisplay();
         display.getSize(size);
         xMax = (float) size.x - 150;
-        yMax = 750;
+        yMax = (float) size.y -250;
         matrix = new String[11];
         matrixEntry = "";
 
@@ -400,30 +476,30 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
         texto3 = new TextView(this);
 
         texto.setWidth(110);
-        texto.setX(270);
+        texto.setX(335);
         texto.setY(460);
         int RED = Color.RED;
         texto.setTextColor(RED);
-        texto.setTextSize(24);
+        texto.setTextSize(14);
 
         texto1.setWidth(110);
-        texto1.setX(170);
+        texto1.setX(230);
         texto1.setY(125);
         int WHITE = Color.WHITE;
         texto1.setTextColor(WHITE);
-        texto1.setTextSize(24);
+        texto1.setTextSize(14);
 
         texto2.setWidth(180);
         texto2.setX(60);
-        texto2.setY(850);
+        texto2.setY(1000);
         texto2.setTextColor(WHITE);
-        texto2.setTextSize(24);
+        texto2.setTextSize(18);
 
         texto3.setWidth(180);
         texto3.setX(230);
-        texto3.setY(850);
+        texto3.setY(1000);
         texto3.setTextColor(WHITE);
-        texto3.setTextSize(24);
+        texto3.setTextSize(18);
 
         textoG.setHeight(300);
         textoG.setWidth(100);
@@ -439,16 +515,16 @@ public class Move extends Activity implements SensorEventListener2,OnClickListen
 
         endGameButton = new Button(this);
         endGameButton.setWidth(200);
-        endGameButton.setX(400);
-        endGameButton.setY(850);
+        endGameButton.setX(500);
+        endGameButton.setY(1000);
         endGameButton.setText("NEXT ROUND");
         endGameButton.setOnClickListener(this);
         endGameButton.setTag("Round");
 
         round = new Button(this);
         round.setWidth(200);
-        round.setX(400);
-        round.setY(800);
+        round.setX(500);
+        round.setY(900);
         round.setText("NEXT LANGUAGE");
         round.setOnClickListener(this);
         round.setTag("Language");
