@@ -7,7 +7,6 @@ package com.example.root.rekids.GUI;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.*;
 import android.graphics.drawable.shapes.ArcShape;
 import android.graphics.drawable.shapes.OvalShape;
@@ -33,7 +32,9 @@ public class MyView extends View {
     int shapes;
     String emptyCell;
 
-
+    /*
+    Constructor
+     */
     public MyView(Context context, int x, int y, String id) {
         super(context);
         idX = x;
@@ -42,21 +43,33 @@ public class MyView extends View {
         init();
     }
 
+    /*
+    Constructor
+     */
     public MyView(Context context) {
         super(context);
         init();
     }
 
+    /*
+    Constructor
+     */
     public MyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
+    /*
+    Constructor
+     */
     public MyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
+    /*
+    Inicializa matriz
+     */
     private void init() {
         touchOn = false;
         switch (emptyCell) {
@@ -85,6 +98,9 @@ public class MyView extends View {
                 MeasureSpec.getSize(heightMeasureSpec));
     }
 
+    /*
+    Dibuja las formas de acuerdo al patron
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         if (shapes == 1) {
@@ -170,10 +186,14 @@ public class MyView extends View {
         }
     }
 
+    /*
+    Cambia la forma de la celda si es posible
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
 
+        //Si el caracter es F, se puede cambiar
         if (emptyCell != "F"){
             return false;
         }
@@ -214,6 +234,9 @@ public class MyView extends View {
         return false;
     }
 
+    /*
+    Retorna el valor de String de cada figura
+     */
     public String getValor(int id){
         switch (id){
             case 0:
@@ -235,6 +258,9 @@ public class MyView extends View {
         return valor;
     }
 
+    /*
+    Touch the View event
+     */
     @Override
     public boolean performClick() {
         super.performClick();
