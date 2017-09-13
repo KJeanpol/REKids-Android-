@@ -10,8 +10,7 @@ import android.widget.Button;
 import com.example.root.rekids.R;
 
 public class MainActivity extends AppCompatActivity {
-
-
+  //GUI Stuff
     Button buttonGame1, buttonGame2, buttonGame3, buttonMusic,howto1,howto2,howto3,salir;
     MediaPlayer mediaPlayer;
     Boolean play;
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Exit Button
     View.OnClickListener exit = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         }};
 
+    //Instruccions Game 1 Button
     View.OnClickListener ht1 = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -58,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
         }};
 
+    //Instruccions Game 2 Button
     View.OnClickListener ht2 = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             startActivity(new Intent(MainActivity.this, HowTo2.class));
 
         }};
+    //Instruccions Game 3 Button
     View.OnClickListener ht3 = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         }};
 
+    //Music Button
     View.OnClickListener Musiclistener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
@@ -108,4 +112,5 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, Game3Activity.class));
         }};
 }
+
 
