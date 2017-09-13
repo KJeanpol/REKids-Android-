@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 public class Game1Activity extends AppCompatActivity implements MyView.OnToggledListener {
 
+    //COMPONENTES DE GUI
     MyView[] myViews;
     GridLayout myGridLayout;
     Button buttong, buttonc;
@@ -52,7 +53,7 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
 
         a.setImageResource(images[rand]);
 
-
+        //GENERA CELDAS PARA EL JUEGO
         int numOfCol = myGridLayout.getColumnCount();
         int numOfRow = myGridLayout.getRowCount();
         myViews = new MyView[numOfCol * numOfRow];
@@ -95,6 +96,12 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
     }
 
 
+    /**Genera Matriz
+     *
+     * @param Alphabet Alfabeto que utilizara la expresion regular
+     * @param exp Expresion regular
+     * @return
+     */
     public String[][] generateMatrix(String[] Alphabet, String exp) {
         for (int i = 0; i < 5; i++) {
             matrixEntry = generateLanguage(Alphabet, exp);
@@ -109,6 +116,11 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         return matrix;
     }
 
+    /**Genera matriz con caracteres ocultos
+     *
+     * @param mat
+     * @return
+     */
     public String[][] generateFMatrix(String[][] mat) {
         matrixShown=matrix;
         Random random = new Random();
@@ -122,8 +134,12 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
 
 
     //REGEX LOGIC
-    /*
 
+    /**Compara lenguaje con expresion
+     *
+     * @param pLanguage lenguaje
+     * @param pExpression expresion
+     * @return
      */
     public boolean compareLanguage(String pLanguage, String pExpression){
         return Pattern.matches(pExpression,pLanguage);
@@ -131,12 +147,21 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
 
 
 
+    /*
+    Generate random integer
+     */
     public int generateRandom() {
         Random random = new Random();
         int num = 1 + random.nextInt(5);
         return num;
     }
 
+    /**Genera lenguajes
+     *
+     * @param Alphabet Alfabeto
+     * @param exp expresion
+     * @return
+     */
     public String generateLanguage(String[] Alphabet, String exp) {
         String[] alphabet = Alphabet;
         int num = generateRandom();
@@ -159,12 +184,21 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         }
     }
 
+    /**Compara lenguaje
+     *
+     * @param language lenguaje
+     * @param expression expresion
+     * @return
+     */
     public boolean isLanguage(String language, String expression) {
         return Pattern.matches(expression, language);
     }
 
 
 
+    /*
+    Checks if the answer given is correct
+     */
     public boolean compare(){
         boolean cond=true;
         for(int i=0;i<5;i++){
@@ -178,6 +212,11 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         return cond;
     }
 
+    /**
+     * Retorna los lenguajes de la matriz
+     * @param a Matriz lenguajes
+     * @return
+     */
     public String langs(String[] a){
         String res="";
         for(int i=0;i<a.length;i++){
@@ -187,6 +226,9 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
     }
 
 
+    /*
+    Listener
+     */
     View.OnClickListener generar = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -198,6 +240,9 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         }
     };
 
+    /*
+    Listener
+     */
     View.OnClickListener compare = new View.OnClickListener(){
         @Override
         public void onClick(View v){
@@ -219,6 +264,9 @@ public class Game1Activity extends AppCompatActivity implements MyView.OnToggled
         }
     };
 
+    /*
+    Game GUI Components listener
+     */
     @Override
     public void OnToggled(MyView v, boolean touchOn) {
 
