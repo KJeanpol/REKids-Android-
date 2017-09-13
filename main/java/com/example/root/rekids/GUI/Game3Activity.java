@@ -24,6 +24,7 @@ import java.util.regex.PatternSyntaxException;
  */
 
 public class Game3Activity extends AppCompatActivity {
+    //Componentes GUI
     GridLayout myGridLayout;
     Button buttong, buttonc;
     EditText exp;
@@ -54,7 +55,12 @@ public class Game3Activity extends AppCompatActivity {
 
     }
 
-
+    /**Genera Matriz
+     *
+     * @param Alphabet Alfabeto que utilizara la expresion regular
+     * @param exp Expresion regular
+     * @return
+     */
     public String[] generateMatrix(String[] Alphabet, String exp) {
         for (int i = 0; i < 15; i++) {
             matrixEntry = generateLanguage(Alphabet, exp);
@@ -68,12 +74,11 @@ public class Game3Activity extends AppCompatActivity {
 
 
     //REGEX LOGIC
-    /*
 
+    /**Genera entero random
+     *
+     * @return
      */
-
-
-
     public int generateRandom() {
         Random random = new Random();
         int num = (int) ((Math.random() * 15) + 1);
@@ -81,6 +86,12 @@ public class Game3Activity extends AppCompatActivity {
         return num;
     }
 
+    /**Genera Lenguajes
+     *
+     * @param Alphabet Alfabeto que utilizara la expresion regular
+     * @param exp Expresion regular
+     * @return
+     */
     public String generateLanguage(String[] Alphabet, String exp) {
         String[] alphabet = Alphabet;
         int num = generateRandom();
@@ -104,10 +115,19 @@ public class Game3Activity extends AppCompatActivity {
         }
     }
 
+    /**Compara un lenguaje con la expresion
+     *
+     * @param language Lenguaje a comparar
+     * @param expression expresion a comparar
+     * @return
+     */
     public boolean isLanguage(String language, String expression) {
         return Pattern.matches(expression, language);
     }
 
+    /*
+    Adds the | character the same as +
+     */
     View.OnClickListener or =new View.OnClickListener(){
         @Override
         public void onClick(View v){
@@ -116,7 +136,9 @@ public class Game3Activity extends AppCompatActivity {
     };
 
 
-
+    /*
+    Generate languages with the given expressions
+     */
     View.OnClickListener generar = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
